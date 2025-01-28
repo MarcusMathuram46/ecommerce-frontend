@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 import Meta from "../components/Meta";
+import styled from 'styled-components';
 // import BlogCard from "../components/BlogCard";
 // import ProductCard from "../components/ProductCard";
 // import SpecialProduct from "../components/SpecialProduct";
@@ -98,6 +99,7 @@ function Home() {
   const addToWishList = (id) => {
     dispatch(addToWishlist({ id, config2 }));
   };
+  
   return (
     <>
       <Meta title="Ecommerce App" />
@@ -132,23 +134,12 @@ function Home() {
                         overflow: "hidden",
                       }}
                     >
-                      <Image
+                    <Image
                         src={image}
                         alt="slider"
                         preview={false}
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          maxHeight: "250px", // Limits height for larger screens
-                          objectFit: "cover",
-                          borderRadius: "8px", // Optional: adds rounded corners
-                          "@media (max-width: 768px)": {
-                            // Adjusts for smaller screens
-                            maxHeight: "150px",
-                            padding: "5px", // Optional: reduces padding for smaller screens
-                          },
-                        }}
-                      />
+                        as={StyledImage}
+                    />
                     </div>
                   );
                 })}
@@ -802,5 +793,17 @@ function Home() {
     </>
   )
 }
+const StyledImage = styled.img`
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    max-height: 150px;
+    padding: 5px;
+  }
+`;
 
 export default Home

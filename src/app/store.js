@@ -12,6 +12,13 @@ export const store = configureStore({
     blog: blogReducer,
     contact: contactReducer,
     coupon: couponReducer,
-
   },
+  // Optional: Disable serializability check for non-serializable actions
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['user/get-wishlist/rejected'], // Ignore the action for wishlist error
+        ignoredPaths: ['payload'], // Ignore payload in these actions
+      },
+    }),
 });
