@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { refreshToken, resetState } from './features/user/userSlice';
 import { jwtDecode } from 'jwt-decode';
-import toast from 'react-toastify';
+import {toast} from 'react-toastify';
 
 import Layout from './components/Layout';
 import Home from './pages/Home';
