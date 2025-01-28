@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 function CustomInput({
   type,
   name,
-  placeholder,
-  className,
+  placeholder = "",
+  className = "",
   value,
   onChange,
   onBlur,
-  disabled,
+  disabled = false,
 }) {
   return (
     <div>
@@ -36,12 +36,6 @@ CustomInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   disabled: PropTypes.bool,
-};
-
-CustomInput.defaultProps = {
-  placeholder: "",
-  className: "",
-  disabled: false,
 };
 
 export default CustomInput;
