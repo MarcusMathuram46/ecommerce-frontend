@@ -5,7 +5,7 @@ import Container from "../components/Container";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAOrder } from "../features/user/userSlice";
-import StepOrderComponent from "../components/stepOrderComponent";
+import StepOrderComponent from "../components/StepOrderComponent"
 import { useMemo } from "react";
 
 function OrderDetail() {
