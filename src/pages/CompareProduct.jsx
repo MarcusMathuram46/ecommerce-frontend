@@ -4,6 +4,7 @@ import Color from "../components/Color";
 import Meta from "../components/Meta";
 import watch from "../images/watch.jpg";
 import Container from "../components/Container";
+import { motion } from "framer-motion"; // Import motion from Framer Motion
 
 function CompareProduct() {
   return (
@@ -12,22 +13,43 @@ function CompareProduct() {
       <BreadCrumb title="Compare Products" />
       <Container class1="compare-product-wrapper py-5 home-wrapper-2">
         <div className="row">
+          {/* First Product Card */}
           <div className="col-3">
-            <div className="compare-product-card position-relative">
-              <img
+            <motion.div
+              className="compare-product-card position-relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.img
                 src={watch}
                 alt="cross"
                 className="position-absolute cross img-fluid"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               />
               <div className="product-card-image">
-                <img src="images/watch.jpg" alt="watch" />
+                <motion.img
+                  src={watch}
+                  alt="watch"
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.6 }}
+                />
               </div>
               <div className="compare-product-details">
-                <h5 className="title">
+                <motion.h5 className="title">
                   Honor T1 7.0 1 GB RAM 8 GB ROM 7 Inch With Wi-Fi+3G Tablet
-                </h5>
-                <h6 className="price mb-3 mt-3">$ 100</h6>
-
+                </motion.h5>
+                <motion.h6
+                  className="price mb-3 mt-3"
+                  initial={{ y: 20 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  $ 100
+                </motion.h6>
                 <div>
                   <div className="product-detail">
                     <h5>Brand:</h5>
@@ -54,24 +76,46 @@ function CompareProduct() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
+          
+          {/* Second Product Card */}
           <div className="col-3">
-            <div className="compare-product-card position-relative">
-              <img
+            <motion.div
+              className="compare-product-card position-relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }} // Added delay for smooth sequence
+            >
+              <motion.img
                 src="images/cross.svg"
                 alt="cross"
                 className="position-absolute cross img-fluid"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               />
               <div className="product-card-image">
-                <img src={watch} alt="watch" />
+                <motion.img
+                  src={watch}
+                  alt="watch"
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.6 }}
+                />
               </div>
               <div className="compare-product-details">
-                <h5 className="title">
+                <motion.h5 className="title">
                   Honor T1 7.0 1 GB RAM 8 GB ROM 7 Inch With Wi-Fi+3G Tablet
-                </h5>
-                <h6 className="price mb-3 mt-3">$ 100</h6>
-
+                </motion.h5>
+                <motion.h6
+                  className="price mb-3 mt-3"
+                  initial={{ y: 20 }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  $ 100
+                </motion.h6>
                 <div>
                   <div className="product-detail">
                     <h5>Brand:</h5>
@@ -98,12 +142,12 @@ function CompareProduct() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </Container>
     </>
-  )
+  );
 }
 
-export default CompareProduct
+export default CompareProduct;

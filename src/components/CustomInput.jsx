@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { motion } from "framer-motion";
 
 function CustomInput({
   type,
@@ -12,8 +13,12 @@ function CustomInput({
   disabled = false,
 }) {
   return (
-    <div>
-      <input
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <motion.input
         type={type}
         name={name}
         placeholder={placeholder}
@@ -22,8 +27,10 @@ function CustomInput({
         onChange={onChange}
         onBlur={onBlur}
         disabled={disabled}
+        whileFocus={{ scale: 1.05, borderColor: "#007bff" }} // Slight zoom-in effect on focus
+        transition={{ duration: 0.2 }}
       />
-    </div>
+    </motion.div>
   );
 }
 

@@ -401,12 +401,6 @@ function Cart() {
                       : "0 ₹"}
                   </p>
                 </div>
-                {/* <div className="d-flex justify-content-between align-items-center">
-                  <p className="total">Giảm giá </p>
-                  <p className="total-price">
-                    {totalAmountAfterDiscount ? (totalAmount - totalAmountAfterDiscount).toLocaleString("vi-VN", { style: "currency", currency: "VND" }) : 0}
-                  </p>
-                </div> */}
                 <div className="d-flex justify-content-between align-items-center">
                   <p className="mb-0 total">Shipping fee</p>
                   <p className="mb-0 total-price">
@@ -433,14 +427,6 @@ function Cart() {
                 </h5>
               </div>
               {paymentMethod === "paypal-card" && sdkReady ? (
-                // <PayPalButton
-                //   amount={convertTotalAmountUSD}
-                //   // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                //   onSuccess={onSuccessPaypal}
-                //   onError={() => {
-                //     alert("Error")
-                //   }}
-                // />
                 <button />
               ) : (
                 <button

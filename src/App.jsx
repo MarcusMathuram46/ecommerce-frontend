@@ -29,9 +29,9 @@ import Signup from './pages/Signup';
 import Resetpassword from './pages/Resetpassword';
 import ChangePassword from './pages/ChangePassword';
 import PrivacyPolicy from './pages/PrivacyPolicy';
-import RefundPloicy from './pages/RefundPloicy';
+import RefundPolicy from './pages/RefundPolicy';
 import ShippingPolicy from './pages/ShippingPolicy';
-import TermAndContions from './pages/TermAndContions';
+import TermsAndConditions from './pages/TermsAndConditions';
 
 
 function App() {
@@ -118,9 +118,9 @@ function App() {
             <Route path='reset-password/:token' element={<Resetpassword />} />
             <Route path='change-password/' element={<ChangePassword />} />
             <Route path='privacy-policy' element={<PrivacyPolicy />} />
-            <Route path='refund-policy' element={<RefundPloicy />} />
+            <Route path='refund-policy' element={<RefundPolicy />} />
             <Route path='shipping-policy' element={<ShippingPolicy />} />
-            <Route path='tern-conditions' element={<TermAndContions />} />
+            <Route path='TermsAndConditions' element={<TermsAndConditions />} />
           </Route>
         </Routes>
       </BrowserRouter>

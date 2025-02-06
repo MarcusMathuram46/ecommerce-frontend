@@ -3,11 +3,11 @@ import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import Container from "../components/Container";
 
-function TermAndContions() {
+function RefundPolicy() {
   return (
     <>
-      <Meta title={"Term And Conditions"} />
-      <BreadCrumb title="Term And Conditions" />
+      <Meta title={"Refund Policy"} />
+      <BreadCrumb title="Refund Policy" />
       <Container class1="policy-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
@@ -19,4 +19,4 @@ function TermAndContions() {
   )
 }
 
-export default TermAndContions
+export default RefundPolicy

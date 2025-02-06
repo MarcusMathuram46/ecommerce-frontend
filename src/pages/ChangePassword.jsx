@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { changePassword, resetState } from "../features/user/userSlice";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { motion } from "framer-motion";
 
 let Schema = Yup.object().shape({
   oldPassword: Yup.string().required("Old password is required"),
@@ -22,7 +22,7 @@ let Schema = Yup.object().shape({
 });
 
 function ChangePassword() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [isShowPasswordOld, setIsShowPasswordOld] = useState(false);
@@ -44,32 +44,44 @@ function ChangePassword() {
       dispatch(changePassword(values));
     },
   });
+
   useEffect(() => {
-    if (
-      authState.updatedPassword !== undefined &&
-      authState.isError === false
-    ) {
+    if (authState.updatedPassword !== undefined && authState.isError === false) {
       navigate("/my-profile");
     }
   }, [authState]);
+
   return (
     <>
       <Meta title="Change Password" />
       <BreadCrumb title="Change password" />
-      <Container
-        class1="login-wrapper py-5"
-        style={{ backgroundColor: "#7985c9" }}
-      >
+      <Container class1="login-wrapper py-5" style={{ backgroundColor: "#7985c9" }}>
         <div className="row">
           <div className="col-12">
             <div className="auth-card">
-              <h3 className="text-center mb-3">Change password</h3>
-              <form
+              <motion.h3
+                className="text-center mb-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                Change password
+              </motion.h3>
+
+              <motion.form
                 action=""
                 onSubmit={formik.handleSubmit}
                 className="d-flex flex-column gap-15"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
               >
-                <div className="custom-input-password">
+                <motion.div
+                  className="custom-input-password"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7 }}
+                >
                   <CustomInput
                     type={isShowPasswordOld ? "text" : "password"}
                     name="oldPassword"
@@ -81,14 +93,22 @@ function ChangePassword() {
                   <div className="error">
                     {formik.touched.oldPassword && formik.errors.oldPassword}
                   </div>
-                  <span
+                  <motion.span
                     onClick={() => setIsShowPasswordOld(!isShowPasswordOld)}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.8 }}
+                    transition={{ type: "spring", stiffness: 400 }}
                   >
                     {isShowPasswordOld ? <FaRegEye /> : <FaRegEyeSlash />}
-                  </span>
-                </div>
+                  </motion.span>
+                </motion.div>
 
-                <div className="custom-input-password">
+                <motion.div
+                  className="custom-input-password"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7 }}
+                >
                   <CustomInput
                     type={isShowPassword ? "text" : "password"}
                     name="newPassword"
@@ -100,28 +120,41 @@ function ChangePassword() {
                   <div className="error">
                     {formik.touched.newPassword && formik.errors.newPassword}
                   </div>
-                  <span onClick={() => setIsShowPassword(!isShowPassword)}>
+                  <motion.span
+                    onClick={() => setIsShowPassword(!isShowPassword)}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.8 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
                     {isShowPassword ? <FaRegEye /> : <FaRegEyeSlash />}
-                  </span>
-                </div>
+                  </motion.span>
+                </motion.div>
+
                 <div>
                   <Link to="/forgot-password">Forgot password?</Link>
-                  <div className="mt-3 d-flex justify-content-center align-items-center gap-15">
-                    <button
+                  <motion.div
+                    className="mt-3 d-flex justify-content-center align-items-center gap-15"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    <motion.button
                       className="button border-0 signIn btn-submit"
                       type="submit"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 400 }}
                     >
                       Change password
-                    </button>
-                  </div>
+                    </motion.button>
+                  </motion.div>
                 </div>
-              </form>
+              </motion.form>
             </div>
           </div>
         </div>
       </Container>
     </>
-  )
+  );
 }
 
-export default ChangePassword
+export default ChangePassword;

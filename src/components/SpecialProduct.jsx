@@ -1,16 +1,30 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function SpecialProduct(props) {
-    const { title, brand, totalrating, price, sold, quantity, id } = props;
+  const { title, brand, totalrating, price, sold, quantity, id } = props;
+
   return (
     <>
-      <div className="col-6 mb-3">
+      <motion.div
+        className="col-6 mb-3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="special-product-card">
           <div className="d-flex justify-content-between">
             <div>
-              <img src="images/watch.jpg" className="img-fluid" alt="watch" />
+              <motion.img
+                src="images/watch.jpg"
+                className="img-fluid"
+                alt="watch"
+                initial={{ scale: 0.95 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.4 }}
+              />
             </div>
             <div className="special-product-content">
               <h5 className="brand">{brand}</h5>
@@ -26,27 +40,22 @@ function SpecialProduct(props) {
                 <span className="red-p">{price}</span> &nbsp;{" "}
                 <strike>$200</strike>
               </p>
-              {/* <div className="discount-till d-flex align-items-center gap-10">
-                <p className="mb-0">
-                  <b>5 </b>days
-                </p>
-                <div className="d-flex gap-10 align-items-center">
-                  <span className="badge rounded-circle p-3 bg-danger">1</span>:
-                  <span className="badge rounded-circle p-3 bg-danger">1</span>:
-                  <span className="badge rounded-circle p-3 bg-danger">1</span>
-                </div>
-              </div> */}
               <div className="prod-count my-3">
                 <p>Products: {quantity}</p>
                 <div className="progress">
-                  <div
+                  <motion.div
                     className="progress-bar"
                     role="progressbar"
-                    style={{ width: quantity / quantity + sold * 100 + "%" }}
-                    aria-valuenow={quantity / quantity + sold * 100}
-                    aria-valuemin={quantity}
-                    aria-valuemax={sold + quantity}
-                  ></div>
+                    style={{
+                      width: (quantity / (quantity + sold)) * 100 + "%",
+                    }}
+                    aria-valuenow={(quantity / (quantity + sold)) * 100}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    initial={{ width: 0 }}
+                    animate={{ width: (quantity / (quantity + sold)) * 100 + "%" }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                  ></motion.div>
                 </div>
               </div>
               <Link className="button" to={"/product/" + id}>
@@ -55,9 +64,9 @@ function SpecialProduct(props) {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
-  )
+  );
 }
 
-export default SpecialProduct
+export default SpecialProduct;

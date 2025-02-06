@@ -1,21 +1,16 @@
 import React, { useEffect } from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
-
-// import prodcompare from "../images/prodcompare.svg";
-// import wish from "../images/wish.svg";
-// import wishlist from "../images/wishlist.svg";
 import watch from "../images/watch.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist } from "../features/products/productSlice";
 import { getAllCoupons } from "../features/coupon/couponSlice";
-
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { getUserProductWishlist } from "../features/user/userSlice";
-
+import { motion } from "framer-motion"; // Import framer-motion
 
 function ProductCard(props) {
-    const getTokenFromLocalStorage = localStorage.getItem("customer")
+  const getTokenFromLocalStorage = localStorage.getItem("customer")
     ? JSON.parse(localStorage.getItem("customer"))
     : null;
 
@@ -50,6 +45,7 @@ function ProductCard(props) {
   const addToWishList = (id) => {
     dispatch(addToWishlist({ id, config2 }));
   };
+
   return (
     <>
       {data &&
@@ -71,6 +67,7 @@ function ProductCard(props) {
               break;
             }
           }
+
           let alreadyAddedToWishlist = false;
           for (let i = 0; i < wishlistState?.length; i++) {
             if (item._id === wishlistState[i]?._id) {
@@ -78,19 +75,26 @@ function ProductCard(props) {
               break;
             }
           }
+
           return (
-            <div
+            <motion.div
               key={index}
-              className={`
-            ${
-              location.pathname === "/product"
-                ? `gr-${grid} col-sm-6 col-xs-6 col-md-4 mt-3 home-product-card`
-                : "col-xl-2-4 col-lg-3 col-md-4 col-sm-6 col-xs-6 mt-3 home-product-card"
-            }`} // the following ones go up to the gr-{grid}
+              className={`${
+                location.pathname === "/product"
+                  ? `gr-${grid} col-sm-6 col-xs-6 col-md-4 mt-3 home-product-card`
+                  : "col-xl-2-4 col-lg-3 col-md-4 col-sm-6 col-xs-6 mt-3 home-product-card"
+              }`}
               disabled={item?.quantity === 0}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="product-card position-relative">
-                <div className="wishlist-icon position-absolute">
+                <motion.div
+                  className="wishlist-icon position-absolute"
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <button
                     className="border-0 bg-transparent btn-wishlist"
                     onClick={(e) => {
@@ -112,39 +116,48 @@ function ProductCard(props) {
                       </div>
                     )}
                   </button>
-                </div>
-                <Link
-                  to={item?.quantity !== 0 && "/product/" + item?._id}
-                  className={`w-100`}
-                >
+                </motion.div>
+                <Link to={item?.quantity !== 0 && "/product/" + item?._id} className="w-100">
                   <div className={`${grid === 12 ? "d-flex gap-3" : ""}`}>
-                    <div
-                      className={`product-image ${grid === 12 ? "w-25" : ""}`}
-                    >
-                      <img
-                        src={
-                          item?.images[0]?.url ? item?.images[0]?.url : watch
-                        }
+                    <div className={`product-image ${grid === 12 ? "w-25" : ""}`}>
+                      <motion.img
+                        src={item?.images[0]?.url ? item?.images[0]?.url : watch}
                         className="img-fluid mx-auto"
                         alt="product image"
                         width={160}
                         style={{ width: "100%", height: "100%" }}
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3 }}
                       />
-                      <img
-                        src={
-                          item?.images[0]?.url ? item?.images[1]?.url : watch
-                        }
+                      <motion.img
+                        src={item?.images[1]?.url ? item?.images[1]?.url : watch}
                         className="img-fluid mx-auto"
                         alt="product image"
                         width={160}
                         style={{ width: "100%", height: "100%" }}
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3 }}
                       />
                     </div>
-                    <div
-                      className={`product-details ${grid === 12 ? "w-75" : ""}`}
-                    >
-                      <h6 className="brand mt-2">{item?.brand}</h6>
-                      <h5 className="title mb-1"> {item?.title}</h5>
+                    <div className={`product-details ${grid === 12 ? "w-75" : ""}`}>
+                      <motion.h6
+                        className="brand mt-2"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        {item?.brand}
+                      </motion.h6>
+                      <motion.h5
+                        className="title mb-1"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        {item?.title}
+                      </motion.h5>
                       <ReactStars
                         count={5}
                         size={24}
@@ -154,14 +167,17 @@ function ProductCard(props) {
                       />
                       <p
                         style={{ wordWrap: "break-word" }}
-                        className={`description ${
-                          grid === 12 ? "d-block" : "d-none"
-                        }`}
+                        className={`description ${grid === 12 ? "d-block" : "d-none"}`}
                         dangerouslySetInnerHTML={{
                           __html: item.description.substr(0, 330) + "...",
                         }}
                       ></p>
-                      <div className="d-flex gap-1 price-on-mobile-home">
+                      <motion.div
+                        className="d-flex gap-1 price-on-mobile-home"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                      >
                         <p
                           className="price mb-0"
                           style={{
@@ -171,13 +187,13 @@ function ProductCard(props) {
                         >
                           {isShowPriceDiscount ? (
                             <del>
-                              {(item?.price).toLocaleString("en-IN", {
+                              {item?.price.toLocaleString("en-IN", {
                                 style: "currency",
                                 currency: "INR",
                               })}
                             </del>
                           ) : (
-                            (item?.price).toLocaleString("en-IN", {
+                            item?.price.toLocaleString("en-IN", {
                               style: "currency",
                               currency: "INR",
                             })
@@ -193,34 +209,21 @@ function ProductCard(props) {
                                   })
                                 : "₹0"}
                             </p>
-                            <h6
-                              style={{ color: "#434141" }}
-                            >{`(-${discountPercent}%)`}</h6>
+                            <h6 style={{ color: "#434141" }}>
+                              {`(-${discountPercent}%)`}
+                            </h6>
                           </div>
                         )}
-                      </div>
+                      </motion.div>
                     </div>
-                    {/* <div className='action-bar position-absolute'>
-                    <div className='d-flex flex-column gap-15'>
-                      <button className='border-0 bg-transparent'>
-                    <img src={prodcompare} alt='compare' />
-                  </button>
-                  <Link to={'/product/' + item?._id} className='border-0 bg-transparent'>
-                    <img src={view} alt='view' />
-                  </Link>
-                      <button className='border-0 bg-transparent'>
-                    <img src={addcart} alt='addcart' />
-                  </button>
-                    </div>
-                  </div> */}
                   </div>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           );
         })}
     </>
-  )
+  );
 }
 
-export default ProductCard
+export default ProductCard;
