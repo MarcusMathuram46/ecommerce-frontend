@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import { Link } from "react-router-dom";
 import {
   BsLinkedin,
@@ -7,125 +7,130 @@ import {
   BsInstagram,
   BsFacebook,
 } from "react-icons/bs";
-import { motion } from "framer-motion";
 import newsletter from "../images/newsletter.png";
 
 function Footer() {
   return (
     <>
-      {/* Newsletter Subscription Section */}
-      <motion.footer 
-        className="py-4"
-        initial={{ opacity: 0, y: 10 }} 
-        animate={{ opacity: 1, y: 0 }} 
-        transition={{ duration: 0.5 }}
-      >
+      <footer className="py-4">
         <div className="container-xxl">
           <div className="row align-items-center">
-            <div className="col-md-5">
-              <div className="footer-top-data d-flex gap-3 align-items-center">
-                <img src={newsletter} alt="Newsletter" className="img-fluid" />
+            <div className="col-5">
+              <div className="footer-top-data d-flex gap-30 align-items-center">
+                <img src={newsletter} alt="newsletter" />
                 <h2 className="mb-0 text-white">Sign Up for Newsletter</h2>
               </div>
             </div>
-            <div className="col-md-7">
+            <div className="col-7">
               <div className="input-group">
                 <input
-                  type="email"
-                  className="form-control py-2"
+                  type="text"
+                  className="form-control py-1"
                   placeholder="Your Email Address"
                   aria-label="Your Email Address"
+                  aria-describedby="basic-addon2"
                 />
-                <button className="input-group-text p-2 btn btn-info">
+                <span className="input-group-text p-2" id="basic-addon2">
                   Subscribe
-                </button>
+                </span>
               </div>
             </div>
           </div>
         </div>
-      </motion.footer>
-
-      {/* Footer Main Section */}
-      <motion.footer 
-        className="py-4"
-        initial={{ opacity: 0, y: 10 }} 
-        animate={{ opacity: 1, y: 0 }} 
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
+      </footer>
+      <footer className="py-4">
         <div className="container-xxl">
           <div className="row">
-            {/* Contact Info */}
-            <div className="col-md-4">
-              <h4 className="text-white mb-3">Contact Us</h4>
-              <address className="text-white">
-                Hno: 174, 2nd Cross Street, 1st Main Road, <br />
-                KK Nagar, Madurai <br />
-                Pincode: 625020
-              </address>
-              <a href="tel:+919688597790" className="text-white d-block mb-2">
-                +91 96885 97790
-              </a>
-              <a href="mailto:marcus.mathuram7@gmail.com" className="text-white d-block">
-                marcus.mathuram7@gmail.com
-              </a>
-              <div className="d-flex gap-3 mt-3">
-                {[BsLinkedin, BsInstagram, BsGithub, BsYoutube, BsFacebook].map((Icon, index) => (
-                  <motion.a
-                    key={index}
-                    href="##"
-                    className="text-white fs-4"
-                    whileHover={{ scale: 1.2, color: "#007bff" }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Icon />
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-
-            {/* Quick Links */}
-            {[
-              { title: "Information", links: ["Privacy Policy", "Refund Policy", "Shipping Policy", "Terms & Conditions", "Blogs"] },
-              { title: "Account", links: ["About Us", "FAQ", "Contact"] },
-              { title: "Quick Links", links: ["Laptops", "Headphones", "Tablets", "Watch"] },
-            ].map((section, index) => (
-              <div className="col-md-3" key={index}>
-                <h4 className="text-white mb-3">{section.title}</h4>
-                <div className="d-flex flex-column">
-                  {section.links.map((link, i) => (
-                    <motion.span 
-                      key={i}
-                      className="text-white py-1 mb-1"
-                      whileHover={{ x: 5, color: "#007bff" }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Link to="#" className="text-white">{link}</Link>
-                    </motion.span>
-                  ))}
+            <div className="col-4">
+              <h4 className="text-white mb-4">Contact Us</h4>
+              <div>
+                <address className="text-white fs-6">
+                  Hno : 174,2nd cross street,1st main road, <br />
+                  KK Nagar,Madurai <br />
+                  Pincode: 625020
+                </address>
+                <a
+                  href="tel:+91 9688597790"
+                  className="mt-3 d-block mb-1 text-white"
+                >
+                  91 9688597790"
+                </a>
+                <a
+                  href="mailto:marcus.mathuram7@gmail.com"
+                  className="mt-2 d-block mb-0 text-white"
+                >
+                  marcus.mathuram7@gmail.com
+                </a>
+                <div className="social_icons d-flex align-items-center gap-30 mt-4">
+                  <a className="text-white" href="##">
+                    <BsLinkedin className="fs-4" />
+                  </a>
+                  <a className="text-white" href="##">
+                    <BsInstagram className="fs-4" />
+                  </a>
+                  <a className="text-white" href="##">
+                    <BsGithub className="fs-4" />
+                  </a>
+                  <a className="text-white" href="##">
+                    <BsYoutube className="fs-4" />
+                  </a>
+                  <a className="text-white" href="##">
+                    <BsFacebook className="fs-4" />
+                  </a>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </motion.footer>
-
-      {/* Copyright Section */}
-      <motion.footer 
-        className="py-4 bg-dark"
-        initial={{ opacity: 0 }} 
-        animate={{ opacity: 1 }} 
-        transition={{ duration: 0.5, delay: 0.4 }}
-      >
-        <div className="container-xxl">
-          <div className="row">
-            <div className="col-12 text-center">
-              <p className="mb-0 text-white">&copy; {new Date().getFullYear()} Developed by Marcus</p>
+            </div>
+            <div className="col-3">
+              <h4 className="text-white mb-4">Information</h4>
+              <div className="footer-link d-flex flex-column">
+                <Link to="/privacy-policy" className="text-white py-2 mb-1">
+                  Privacy Policy
+                </Link>
+                <Link to="/refund-policy" className="text-white py-2 mb-1">
+                  Refund Policy
+                </Link>
+                <Link to="/shipping-policy" className="text-white py-2 mb-1">
+                  Shipping Policy
+                </Link>
+                <Link to="/term-conditions" className="text-white py-2 mb-1">
+                  Terms & Conditions
+                </Link>
+                <Link className="text-white py-2 mb-1">Blogs</Link>
+              </div>
+            </div>
+            <div className="col-3">
+              <h4 className="text-white mb-4">Account</h4>
+              <div className="footer-link d-flex flex-column">
+                <Link className="text-white py-2 mb-1">About Us</Link>
+                <Link className="text-white py-2 mb-1">Faq</Link>
+                <Link className="text-white py-2 mb-1">Contact</Link>
+              </div>
+            </div>
+            <div className="col-2">
+              <h4 className="text-white mb-4">Quick Links</h4>
+              <div className="footer-link d-flex flex-column">
+                <Link className="text-white py-2 mb-1">Laptops</Link>
+                <Link className="text-white py-2 mb-1">Headphones</Link>
+                <Link className="text-white py-2 mb-1">Tablets</Link>
+                <Link className="text-white py-2 mb-1">Watch</Link>
+              </div>
             </div>
           </div>
         </div>
-      </motion.footer>
+      </footer>
+      <footer className="py-4">
+        <div className="container-xxl">
+          <div className="row">
+            <div className="col-12">
+              <p className="text-center mb-0 text-white">
+                &copy; {new Date().getFullYear()}; Developed By Marcus
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

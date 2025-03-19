@@ -96,6 +96,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <div className="App">
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<Home />} />
@@ -123,6 +124,7 @@ function App() {
             <Route path='TermsAndConditions' element={<TermsAndConditions />} />
           </Route>
         </Routes>
+        </div>
       </BrowserRouter>
     </>
   );

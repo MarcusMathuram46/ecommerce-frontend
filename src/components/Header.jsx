@@ -18,7 +18,7 @@ import user from "../images/user.svg";
 import cart from "../images/cart.svg";
 
 function Header() {
-    const getTokenFromLocalStorage = localStorage.getItem("customer")
+  const getTokenFromLocalStorage = localStorage.getItem("customer")
     ? JSON.parse(localStorage.getItem("customer"))
     : null;
 
@@ -53,14 +53,6 @@ function Header() {
     }
   }, [authState.user]);
 
-  // useEffect(() => {
-  //   let sum = 0;
-  //   for (let index = 0; index < cartState?.length; index++) {
-  //     sum = sum + (Number(cartState[index].quantity) * Number(cartState[index].price))
-  //     setTotal(sum);
-  //   }
-  // }, [cartState])
-
   useEffect(() => {
     let data = [];
     for (let index = 0; index < productState?.length; index++) {
@@ -86,7 +78,7 @@ function Header() {
 
   return (
     <>
-        <header className="header-upper p-2 fixed-header">
+      <header className="header-upper p-2 fixed-header">
         <div className="">
           <div className="row align-items-center justify-content-between w-100">
             <div className="col-md-1 col-2 d-block d-xl-none ps-3 ps-md-4 fs-2 text-white">
@@ -129,7 +121,7 @@ function Header() {
                     className={selectedNavItem === "blogs" ? "selected" : ""}
                     onClick={() => handleNavItemClick("blogs")}
                   >
-                  Bài viết
+                  Blogs
                   </NavLink> */}
                   <NavLink
                     to="/contact"
@@ -311,7 +303,7 @@ function Header() {
               <div className="input-group">
                 <Typeahead
                   id="pagination-example"
-                  onPaginate={() => console.log('')}
+                  onPaginate={() => console.log("")}
                   onChange={(selected) => {
                     navigate(`/product/${selected[0]?.prod}`);
                     dispatch(getAProduct(selected[0]?.prod));
@@ -383,7 +375,7 @@ function Header() {
         </div>
       </header>
     </>
-  )
+  );
 }
 
-export default Header
+export default Header;
